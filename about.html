@@ -24,7 +24,7 @@
                 <div class="container-fluid">
                     <br>
                     <a class="navbar-brand">
-                        <img src="media/acg.png" width="80" height="80">
+                        <img src="resources/media/acg.png" width="80" height="80">
                     </a> 
                     <div class="collapse navbar-collapse" id="navbarNav">
                         <!--Navigation links are grouped in an unordered list, and each one is a hyperlink-->
@@ -36,7 +36,24 @@
                                 <a class="nav-link active" href="about.html">About</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link active" href="https://www.acg.edu/">ACG</a>
+                                <a class="nav-link active" href="https://www.youtube.com/results?search_query=" target="_blank">YouTube</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle active" href="#acg_dropdown_list" role="button" data-bs-toggle="dropdown" aria-expanded="false">ACG</a>
+                                <ul class="dropdown-menu" id="acg_dropdown_list">
+                                    <li>
+                                        <a class="dropdown-item" href="https://www.acg.edu/" target="_blank">Home</a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="https://blackboard.acg.edu/" target="_blank">Blackboard</a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="https://campusweb.acg.edu/ics" target="_blank">myACG</a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="https://library.acg.edu/home" target="_blank">Library</a>
+                                    </li>
+                                </ul>
                             </li>
                         </ul>
                     </div>
@@ -44,23 +61,32 @@
             </nav>
             <!--End of Navigation Bar-->
 
+            <br>
+
             <!--Start of Carousel-->
-            <div id="about_carousel" class="carousel slide" data-bs-ride="carousel">
+            <div id="about_carousel" class="w-50 carousel slide" data-bs-ride="carousel">
                 <div class="carousel-indicators">
                     <button type="button" data-bs-target="#about_carousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
                     <button type="button" data-bs-target="#about_carousel" data-bs-slide-to="1" aria-current="true" aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#about_carousel" data-bs-slide-to="2" aria-current="true" aria-label="Slide 3"></button>
                 </div>
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <img src="media/claire_forlani.png" class="d-block w-100" alt="First slide missing">
+                        <img src="resources/media/claire_forlani.png" class="d-block w-100" alt="First slide missing">
                         <div class="carousel-caption d-done d-md-block">
                             <p>Claire Forlani</p>
                         </div>
                     </div>
                     <div class="carousel-item">
-                        <img src="media/playground.png" class="d-block w-100" alt="Second slide missing">
+                        <img src="resources/media/playground.png" class="d-block w-100" alt="Second slide missing">
                         <div class="carousel-caption d-done d-md-block">
                             <p>Newton's Cradle</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="resources/media/tesla.png" class="d-block w-100" alt="Third slide missing">
+                        <div class="carousel-caption d-done d-md-block">
+                            <p>Nicola Tesla</p>
                         </div>
                     </div>
                     <button class="carousel-control-prev" type="button" data-bs-target="#about_carousel" data-bs-slide="prev">
@@ -75,15 +101,83 @@
             </div>
             <!--End of Carousel-->
 
-            <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+            <br><br><br>
 
+            <!--Start of Grid Cards-->
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="card text-center" style="width: 18rem">
+                        <div class="card-header">
+                            <ul id="tab_list" class="nav nav-tabs card-header-tabs">
+                                <li class="nav-item">
+                                    <a href="#alex_short_info" class="nav-link active" data-bs-toggle="tab">Info</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#alex_more_info" class="nav-link" data-bs-toggle="tab">More</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="card-body">
+                            <div class="tab-content mt-3">
+                                <div class="tab-pane active" id="alex_short_info">
+                                    <img src="resources/media/user_icon.png" class="card-img-top" alt="Image missing">
+                                    <h5>Alexandros Synetos Konstadinidis</h5>
+                                    <hr>
+                                    <p class="card-text">Software Development Undergraduate Student</p>
+                                </div>
+                                <div class="tab-pane" id="alex_more_info">
+                                    <!--Write as much text as you like in a text file and load it from there-->
+                                    <!--However, you have to adjust the width. See 'embed' in 'styles.css'-->
+
+                                    <!--Change the font-->
+                                    <embed src="resources/text/alex_more_info.txt">
+                                </div> 
+                            </div>                           
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="card text-center" style="width: 18rem">
+                        <div class="card-header">
+                            <ul id="tab_list" class="nav nav-tabs card-header-tabs">
+                                <li class="nav-item">
+                                    <a href="#orestis_short_info" class="nav-link active" data-bs-toggle="tab">Info</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#orestis_more_info" class="nav-link" data-bs-toggle="tab">More</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="card-body">
+                            <div class="tab-content mt-3">
+                                <div class="tab-pane active" id="orestis_short_info">
+                                    <img src="resources/media/user_icon.png" class="card-img-top" alt="Image missing">
+                                    <h5>Orestis Papadopoulos</h5>
+                                    <hr>
+                                    <p class="card-text">Software Development Undergraduate Student</p>
+                                </div>
+                                <div class="tab-pane" id="orestis_more_info">
+                                    <!--Change the font-->
+                                    <embed src="resources/text/orestis_more_info.txt">
+                                </div> 
+                            </div>                           
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--End of Grid Cards-->
+
+            <br><br><br><br><br><br>
+            <hr>
+
+            <!--Start of Footer-->
             <footer class="w-100 py-4 flex-shrink-0">
                 <div class="row gy-4 gx-5">
                     <div class="col-lg-4 col-md-6">
-                        <img src="media/acg.png" width="80" height="80">
+                        <img src="resources/media/acg.png" width="80" height="80">
                     </div>
                     <div class="col-lg-4 col-md-6">
-                        <img src="media/user_icon.png" width="114" height="80">
+                        <img src="resources/media/user_icon.png" width="114" height="80">
                         <h4>Alexandros Synetos Konstadinidis</h4>
                             <ul>
                                 <li>a.synetos@acg.edu</li>
@@ -92,7 +186,7 @@
                             </ul>
                     </div>
                     <div class="col-lg-4 col-md-6">
-                        <img src="media/user_icon.png" width="114" height="80">
+                        <img src="resources/media/user_icon.png" width="114" height="80">
                         <h4>Orestis Papadopoulos</h4>
                             <ul>
                                 <li>o.papadopoulos@acg.edu</li>
@@ -109,6 +203,7 @@
                     </div>
                 </div>
             </footer>
+            <!--End of Footer-->
         </div>
         
         <!--For Bootstrap JavaScript bundle (including Popper for positioning dropdowns, poppers, and tooltips) -->

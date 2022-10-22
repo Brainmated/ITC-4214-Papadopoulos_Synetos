@@ -1,6 +1,11 @@
 #about_carousel .carousel-item img {
     object-fit: cover;
     object-position: center;
-    height: 70vw;
+    height: 40vmax; /* height relative to viewport max */
     overflow: hidden;
   }
+
+embed {
+  width: 100%; /* width relative to parent */
+  font-family: Helvetica Neue; /* this does not work */
+}
