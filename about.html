@@ -14,17 +14,20 @@
         <meta name="author" content="Orestis Papadopoulos">
         <!--The viewport (the user's visible area of the page) makes the website look good on all devices-->
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- For jQuery -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script src="js/aux_methods.js"></script>
     </head>
 
     <body>
         <div class="container">
 
             <!--Start of Navigation Bar-->
-            <nav class="navbar navbar-expand-lg bg-light">
+            <nav class="navbar navbar-expand-lg bg-light" id="sticky_header"> 
                 <div class="container-fluid">
-                    <br>
                     <a class="navbar-brand">
                         <img src="resources/media/acg.png" width="80" height="80">
+                        &emsp; ITC4214 Internet Programming &emsp; <!-- '&emsp;' represents a tab -->
                     </a> 
                     <div class="collapse navbar-collapse" id="navbarNav">
                         <!--Navigation links are grouped in an unordered list, and each one is a hyperlink-->
@@ -61,7 +64,7 @@
             </nav>
             <!--End of Navigation Bar-->
 
-            <br>
+            <br><br><br><br>
 
             <!--Start of Carousel-->
             <div id="about_carousel" class="w-50 carousel slide" data-bs-ride="carousel">

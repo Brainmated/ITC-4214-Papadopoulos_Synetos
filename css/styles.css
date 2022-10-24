@@ -1,3 +1,4 @@
+
 #about_carousel .carousel-item img {
     object-fit: cover;
     object-position: center;
@@ -6,6 +7,11 @@
   }
 
 embed {
-  width: 100%; /* width relative to parent */
-  font-family: Helvetica Neue; /* this does not work */
+  width: 100%; /* width relative to parent; otherwise it comes out of the card */
+}
+
+#sticky_header {
+  position: sticky;
+  top: 0;
+  z-index:100; /* so that the header appears in front of the rest of the content */
 }

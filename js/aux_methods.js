@@ -1,14 +1,21 @@
-// all this is supposed to be for the sticky header
 
-window.onscroll = function() {myFunction()};
 
-var header = document.getElementById("myHeader");
-var sticky = header.offsetTop;
+// wait for the document to fully load
+$(document).ready(function() {
 
-function myFunction() {
-  if (window.pageYOffset > sticky) {
-    header.classList.add("sticky");
-  } else {
-    header.classList.remove("sticky");
-  }
-}
+    var original_color;
+
+    // hovering on navigation links makes them bold blue
+    $("a.nav-link, a.nav-link dropdown-toggle, a.dropdown-item").hover(highlight, set_normal);
+
+    function highlight() {
+      original_color = this.style.color;
+      $(this).css("color", "green");
+      $(this).css("font-weight", "bold");
+    }
+
+    function set_normal() {
+      $(this).css("color", original_color);
+      $(this).css("font-weight", "normal");
+    }
+});
