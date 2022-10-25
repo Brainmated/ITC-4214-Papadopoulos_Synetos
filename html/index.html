@@ -1,36 +1,39 @@
-<!DOCTYPE>
-<html>
+<!DOCTYPE html>
+<html lang="en">
     <head>
-        <div class="header" id="stickyHeader">
-            <h2>Header Example</h2>
-        </div>
-        </div>
-        <style></style>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="">
+        <script src="https://code.jquery.com/jquery-3.6.1.js"></script>
+        <script src="js/index.js"></script>
+            <title>Welcome to our library!</title>
     </head>
     <body>
-        <form>
-            <!--jquery https://stackoverflow.com/questions/171027/adding-a-table-row-in-jquery-->
-            <!--javascript https://www.etutorialspoint.com/index.php/11-dynamically-add-delete-html-table-rows-using-javascript-->
-            <!--remove collumn jquery https://www.geeksforgeeks.org/how-to-remove-table-row-from-table-using-jquery/-->
-            
-            <label for="bookTitle">Book Title</label><br>
-            <input type="text" id="bookTitle"><br>
-            <label for="author">Author</label><br>
-            <input typer="text" id="author"><br>
-            <button id="register">Register</button>
-
-            <table border="default" id="myTable">
-                <thead>
-                    <th>Book Title</th>
-                    <th>Book Author</th>
-                    <th></th>
-                </thead>
-                <tbody>
-                    <td></td>
-                    <td></td>
-                    <button id="remove">Delete Row</button>
-                </tbody>
-            </table>
+        <div class="container">
+            <h1>Input your Favourite Book's Information</h1>
+            <p Make sure that all information is valid></p>
+        </div>
+        <div class="row">
+            <div class="indic">
+                <input type="text" class="ourForm" placeholder="Book Title" id="bookTitle">
+            </div>
+            <div class="indic">
+                <input type="text" class="ourForm" placeholder="Year of Publication" id="bookYear">
+            </div>
+        </div>
+        <div class="row1">
+            <div class="colName">
+                <table id="myTable" class="tableStruc table-bordered">
+                    <thead>
+                        <tr>
+                            <th scope="col">Book Title</th>
+                            <th scope="col">Year of Publication</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!--Table data will be input here-->
+                    </tbody>
+                </table>
+        </div>
+        <button type="button" id="regbtn" class="btn btn-success">Register Book</button>
     </body>
 </html>
