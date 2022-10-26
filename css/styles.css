@@ -3,8 +3,9 @@
     object-fit: cover;
     object-position: center;
     height: 40vmax; /* height relative to viewport max */
+    width: 50vmax;
     overflow: hidden;
-  }
+}
 
 embed {
   width: 100%; /* width relative to parent; otherwise it comes out of the card */
@@ -13,5 +14,11 @@ embed {
 #sticky_header {
   position: sticky;
   top: 0;
-  z-index:100; /* so that the header appears in front of the rest of the content */
+  z-index: 100; /* so that the header appears in front of the rest of the content */
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
 }

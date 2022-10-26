@@ -20,102 +20,121 @@
     </head>
 
     <body>
-        <div class="container">
-
-            <!--Start of Navigation Bar-->
-            <nav class="navbar navbar-expand-lg bg-light" id="sticky_header"> 
-                <div class="container-fluid">
-                    <a class="navbar-brand">
-                        <img src="resources/media/acg.png" width="80" height="80">
-                        &emsp; ITC4214 Internet Programming &emsp; <!-- '&emsp;' represents a tab -->
-                    </a> 
-                    <div class="collapse navbar-collapse" id="navbarNav">
-                        <!--Navigation links are grouped in an unordered list, and each one is a hyperlink-->
-                        <ul class="navbar-nav">
-                            <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="index.html">Home</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link active" href="about.html">About</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link active" href="https://www.youtube.com/results?search_query=" target="_blank">YouTube</a>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle active" href="#acg_dropdown_list" role="button" data-bs-toggle="dropdown" aria-expanded="false">ACG</a>
-                                <ul class="dropdown-menu" id="acg_dropdown_list">
-                                    <li>
-                                        <a class="dropdown-item" href="https://www.acg.edu/" target="_blank">Home</a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item" href="https://blackboard.acg.edu/" target="_blank">Blackboard</a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item" href="https://campusweb.acg.edu/ics" target="_blank">myACG</a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item" href="https://library.acg.edu/home" target="_blank">Library</a>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </nav>
-            <!--End of Navigation Bar-->
-
-            <br><br><br><br>
-
-            <!--Start of Carousel-->
-            <div id="about_carousel" class="w-50 carousel slide" data-bs-ride="carousel">
-                <div class="carousel-indicators">
-                    <button type="button" data-bs-target="#about_carousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                    <button type="button" data-bs-target="#about_carousel" data-bs-slide-to="1" aria-current="true" aria-label="Slide 2"></button>
-                    <button type="button" data-bs-target="#about_carousel" data-bs-slide-to="2" aria-current="true" aria-label="Slide 3"></button>
-                </div>
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <img src="resources/media/claire_forlani.png" class="d-block w-100" alt="First slide missing">
-                        <div class="carousel-caption d-done d-md-block">
-                            <p>Claire Forlani</p>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <img src="resources/media/playground.png" class="d-block w-100" alt="Second slide missing">
-                        <div class="carousel-caption d-done d-md-block">
-                            <p>Newton's Cradle</p>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <img src="resources/media/tesla.png" class="d-block w-100" alt="Third slide missing">
-                        <div class="carousel-caption d-done d-md-block">
-                            <p>Nicola Tesla</p>
-                        </div>
-                    </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#about_carousel" data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Previous</span>
-                    </button>                    
-                    <button class="carousel-control-next" type="button" data-bs-target="#about_carousel" data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Next</span>
-                    </button>                    
+        <!--Start of Navigation Bar-->
+        <!-- This is weird: setting to 'navbar-dark' makes font white -->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-opacity-75 bg-primary" id="sticky_header"> 
+            <div class="container">
+                <a class="navbar-brand">
+                    <img src="resources/media/deree_white.png" width="50" height="50">
+                    &emsp; ITC4214 Internet Programming &emsp; <!-- '&emsp;' represents a tab -->
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <!--Navigation links are grouped in an unordered list, and each one is a hyperlink-->
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="about.html">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="https://www.youtube.com/results?search_query=" target="_blank">YouTube</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle active" href="#acg_dropdown_list" role="button" data-bs-toggle="dropdown" aria-expanded="false">ACG</a>
+                            <ul class="dropdown-menu" id="acg_dropdown_list">
+                                <li>
+                                    <a class="dropdown-item" href="https://www.acg.edu/" target="_blank">Home</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="https://blackboard.acg.edu/" target="_blank">Blackboard</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="https://campusweb.acg.edu/ics" target="_blank">myACG</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="https://library.acg.edu/home" target="_blank">Library</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
                 </div>
             </div>
-            <!--End of Carousel-->
+        </nav>
+        <!--End of Navigation Bar-->
+
+        <br><br>
+
+        <div class="container">
+            <div class="row">
+                <!--Start of Carousel-->
+                    <!-- Do not nest the carousel in another div. Make the carousel a col at once. -->
+                    <!-- You can declare multiple classes in an element. But for the carousel, declare class="col" second. -->
+                    <div id="about_carousel" class="w-50 carousel slide" class="col" data-bs-ride="carousel">
+                    <div class="carousel-indicators">
+                        <button type="button" data-bs-target="#about_carousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                        <button type="button" data-bs-target="#about_carousel" data-bs-slide-to="1" aria-current="true" aria-label="Slide 2"></button>
+                        <button type="button" data-bs-target="#about_carousel" data-bs-slide-to="2" aria-current="true" aria-label="Slide 3"></button>
+                    </div>
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="resources/media/claire_forlani.png" class="d-block w-100" alt="First slide missing">
+                            <div class="carousel-caption d-done d-md-block">
+                                <p>Claire Forlani</p>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <img src="resources/media/playground.png" class="d-block w-100" alt="Second slide missing">
+                            <div class="carousel-caption d-done d-md-block">
+                                <p>Newton's Cradle</p>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <img src="resources/media/tesla.png" class="d-block w-100" alt="Third slide missing">
+                            <div class="carousel-caption d-done d-md-block">
+                                <p>Nicola Tesla</p>
+                            </div>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#about_carousel" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>                    
+                        <button class="carousel-control-next" type="button" data-bs-target="#about_carousel" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>                    
+                    </div>      
+                </div>
+                <!--End of Carousel-->
+                
+                <div class="col">
+                    <h1 class="display-4">
+                        Invent yourself
+                        <hr>
+                        Have
+                        <div id="virtue">
+                            curiosity
+                        </div>
+                    </h1>
+                </div>
+            </div>
 
             <br><br><br>
 
-            <!--Start of Grid Cards-->
-            <div class="row">
-                <div class="col-sm-6">
-                    <div class="card text-center" style="width: 18rem">
+            <!-- Start of Grid Cards-->
+            <!-- Start of Alex's card -->
+            <div class="row gy-5 gx-5">
+                <div class="col-sm-auto">
+                    <div class="card text-center" style="width: 18rem" id="alex_card">
                         <div class="card-header">
                             <ul id="tab_list" class="nav nav-tabs card-header-tabs">
                                 <li class="nav-item">
                                     <a href="#alex_short_info" class="nav-link active" data-bs-toggle="tab">Info</a>
                                 </li>
-                                <li class="nav-item">
+                                <li class="nav-item" id="alex_more">
                                     <a href="#alex_more_info" class="nav-link" data-bs-toggle="tab">More</a>
                                 </li>
                             </ul>
@@ -129,24 +148,25 @@
                                     <p class="card-text">Software Development Undergraduate Student</p>
                                 </div>
                                 <div class="tab-pane" id="alex_more_info">
-                                    <!--Write as much text as you like in a text file and load it from there-->
-                                    <!--However, you have to adjust the width. See 'embed' in 'styles.css'-->
-
-                                    <!--Change the font-->
-                                    <embed src="resources/text/alex_more_info.txt">
+                                    <p>
+                                        Alexandros is 25 years old, with experience in programming languages such as: Java, HTML, and SQL.
+                                    </p>
                                 </div> 
                             </div>                           
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-6">
-                    <div class="card text-center" style="width: 18rem">
+                <!-- End of Alex's card -->
+
+                <!-- Start of Orestis' card -->
+                <div class="col">
+                    <div class="card text-center" style="width: 18rem" id="orestis_card">
                         <div class="card-header">
                             <ul id="tab_list" class="nav nav-tabs card-header-tabs">
                                 <li class="nav-item">
                                     <a href="#orestis_short_info" class="nav-link active" data-bs-toggle="tab">Info</a>
                                 </li>
-                                <li class="nav-item">
+                                <li class="nav-item" id="orestis_more">
                                     <a href="#orestis_more_info" class="nav-link" data-bs-toggle="tab">More</a>
                                 </li>
                             </ul>
@@ -160,47 +180,51 @@
                                     <p class="card-text">Software Development Undergraduate Student</p>
                                 </div>
                                 <div class="tab-pane" id="orestis_more_info">
-                                    <!--Change the font-->
-                                    <embed src="resources/text/orestis_more_info.txt">
+                                    <p>
+                                        Orestis is 23 years old in his senior year and has experience with: C, Java, Python, and SQL.
+                                    </p>
                                 </div> 
                             </div>                           
                         </div>
                     </div>
                 </div>
             </div>
-            <!--End of Grid Cards-->
+            <!-- End of Orestis' card -->
+            <!-- End of Grid Cards -->
 
             <br><br><br><br><br><br>
             <hr>
 
             <!--Start of Footer-->
             <footer class="w-100 py-4 flex-shrink-0">
-                <div class="row gy-4 gx-5">
-                    <div class="col-lg-4 col-md-6">
-                        <img src="resources/media/acg.png" width="80" height="80">
+                <div class="row gx-5">
+                    <div class="col-sm-auto">
+                        <img src="resources/media/acg.png" width="120" height="120">
                     </div>
-                    <div class="col-lg-4 col-md-6">
+                    <div class="col">
                         <img src="resources/media/user_icon.png" width="114" height="80">
                         <h4>Alexandros Synetos Konstadinidis</h4>
+                        <br>
                             <ul>
                                 <li>a.synetos@acg.edu</li>
                                 <li>694 5086 298</li>
                                 <li>Sina 62, 10672</li>
                             </ul>
                     </div>
-                    <div class="col-lg-4 col-md-6">
+                    <div class="col">
                         <img src="resources/media/user_icon.png" width="114" height="80">
                         <h4>Orestis Papadopoulos</h4>
+                        <br>
                             <ul>
                                 <li>o.papadopoulos@acg.edu</li>
                                 <li>694 5086 298</li>
                                 <li>Sina 62, 10672</li>
                             </ul>
                     </div>
-                    <br>
                 </div>
+                <br>
+                <hr>
                 <div class="row gy-4 gx-5">
-                    <hr>
                     <div>
                         &copy; 2022 All rights reserved.
                     </div>
