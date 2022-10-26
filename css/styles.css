@@ -7,10 +7,6 @@
     overflow: hidden;
 }
 
-embed {
-  width: 100%; /* width relative to parent; otherwise it comes out of the card */
-}
-
 #sticky_header {
   position: sticky;
   top: 0;

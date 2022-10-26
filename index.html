@@ -6,6 +6,7 @@
         <!--For Bootstrap CSS-->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
         <link rel="stylesheet" href="css/styles.css">
+        <link rel="stylesheet" href="css/index.css">
         <!--Define the character set-->
         <meta charset="UTF-8">
         <meta name="keywords" content="HTML, CSS, Javascript">
@@ -14,35 +15,132 @@
         <meta name="author" content="Orestis Papadopoulos">
         <!--The viewport (the user's visible area of the page) makes the website look good on all devices-->
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- For jQuery -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script src="js/aux_methods.js"></script>
+        <script src="js/index.js"></script>
     </head>
 
     <body>
+        <!--Start of Navigation Bar-->
+        <!-- This is weird: setting to 'navbar-dark' makes font white -->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-opacity-75 bg-primary" id="sticky_header"> 
+            <div class="container">
+                <a class="navbar-brand">
+                    <img src="resources/media/deree_white.png" width="50" height="50">
+                    &emsp; ITC4214 Internet Programming &emsp; <!-- '&emsp;' represents a tab -->
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <!--Navigation links are grouped in an unordered list, and each one is a hyperlink-->
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="about.html">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="https://www.youtube.com/results?search_query=" target="_blank">YouTube</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle active" href="#acg_dropdown_list" role="button" data-bs-toggle="dropdown" aria-expanded="false">ACG</a>
+                            <ul class="dropdown-menu" id="acg_dropdown_list">
+                                <li>
+                                    <a class="dropdown-item" href="https://www.acg.edu/" target="_blank">Home</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="https://blackboard.acg.edu/" target="_blank">Blackboard</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="https://campusweb.acg.edu/ics" target="_blank">myACG</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="https://library.acg.edu/home" target="_blank">Library</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!--End of Navigation Bar-->
+
+        <br><br>
+
         <div class="container">
-            <nav class="navbar navbar-expand-lg bg-light">
-                <div class="container-fluid">
-                    <br>
-                    <a class="navbar-brand">
-                        <img src="media/acg.png" width="80" height="80">
-                    </a> 
-                    <div class="collapse navbar-collapse" id="navbarNav">
-                        <!--Navigation links are grouped in an unordered list, and each one is a hyperlink-->
-                        <ul class="navbar-nav">
-                            <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="index.html">Home</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link active" href="about.html">About</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link active" href="https://www.acg.edu/">ACG</a>
-                            </li>
-                        </ul>
+            <form>
+                <div class="form-group">
+                    <label id="lbl_book_title">Book Title</label>
+                    <input type="text" class="form-control" id="txt_field_book_title" placeholder="Type a book title here">
+                </div>
+                <br>
+                <div class="form row gx-2">
+                    <label id="lbl_year_of_publication">Year of Publication</label>
+                    <div class="form-group col-sm-auto">
+                        <input type="number" min="1300" class="form-control" id="txt_field_year_of_publication" placeholder="Type the year of publication here">
+                    </div>
+                    <div class="form-group col-sm-auto">
+                        <button class="btn btn-primary mb-2">Add</button>
+                    </div>
+                </div>                
+            </form>
+
+            <br><br>
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Book Title</th>
+                        <th scope="col">Year of Publication</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>          
+
+            <br><br><br><br><br><br>
+            <hr>
+
+            <!--Start of Footer-->
+            <footer class="w-100 py-4 flex-shrink-0">
+                <div class="row gx-5">
+                    <div class="col-sm-auto">
+                        <img src="resources/media/acg.png" width="120" height="120">
+                    </div>
+                    <div class="col">
+                        <img src="resources/media/user_icon.png" width="114" height="80">
+                        <h4>Alexandros Synetos Konstadinidis</h4>
+                        <br>
+                            <ul>
+                                <li>a.synetos@acg.edu</li>
+                                <li>694 5086 298</li>
+                                <li>Sina 62, 10672</li>
+                            </ul>
+                    </div>
+                    <div class="col">
+                        <img src="resources/media/user_icon.png" width="114" height="80">
+                        <h4>Orestis Papadopoulos</h4>
+                        <br>
+                            <ul>
+                                <li>o.papadopoulos@acg.edu</li>
+                                <li>694 5086 298</li>
+                                <li>Sina 62, 10672</li>
+                            </ul>
                     </div>
                 </div>
-            </nav>
-        </div>
-          
-        
+                <br>
+                <hr>
+                <div class="row gy-4 gx-5">
+                    <div>
+                        &copy; 2022 All rights reserved.
+                    </div>
+                </div>
+            </footer>
+            <!--End of Footer-->
+        </div>    
         <!--For Bootstrap JavaScript bundle (including Popper for positioning dropdowns, poppers, and tooltips) -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
     </body>
