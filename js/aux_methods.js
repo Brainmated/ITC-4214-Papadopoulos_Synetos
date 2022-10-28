@@ -1,56 +1,94 @@
 
-
 // wait for the document to fully load
 $(document).ready(function() {
+
+  // hovering on navigation links makes them bold
+  $("a.nav-link, a.nav-link dropdown-toggle, a.dropdown-item").hover(set_font_bold, set_font_normal);
   
-  var original_color;
-  var i = 0;
-  const virtues = ["courage", "empathy", "curiosity"];
+  // fade text in and out forever 
+  setInterval(change_virtue, 2000);
 
-  // hovering on navigation links makes them bold black
-  $("a.nav-link, a.nav-link dropdown-toggle, a.dropdown-item").hover(highlight, set_normal);
+  // card tab listener
+  $("li.nav-item").click(animate_card);
 
-  function highlight() {
-    original_color = this.style.color;
-    $(this).css("color", "black");
+  /**
+   * Makes the font of an element bold.
+   * 
+   * @listens onmouseover
+   */
+  function set_font_bold() {
     $(this).css("font-weight", "bold");
   }
 
-  function set_normal() {
-    $(this).css("color", original_color);
+  /**
+   * Makes the font of an element normal.
+   * 
+   * @listens onmouseout
+   */
+  function set_font_normal() {
     $(this).css("font-weight", "normal");
   }
 
-  // merge the following two and use if-else; reset the card when clicking "Info"
-  $("#alex_more").click(function() {
-    $("#alex_card").animate({
-      // preserve the scale
-      width: "100%",
-      height: "100%",
-      // increase font by 50% of the original
-      fontSize: "1.5em",
-    }, 1500 );
-  });
+  // text values for element with id "virtue"
+  const virtues = ["courage", "empathy", "curiosity"];
 
-  $("#orestis_more").click(function() {
-    $("#orestis_card").animate({
-      // preserve the scale
-      width: "100%",
-      height: "100%",
-      // increase font by 50% of the original
-      fontSize: "1.5em",
-    }, 1500 );
-  });
+  /**
+   * Changes the text of the element with id "virtue".
+   * 
+   * The text changes sequentially through all values of array "virtues".
+   */
+  function set_next_virtue_text() {
+    $('#virtue').text(virtues[i++]);
+  }
 
-  // fading text
+  // index for "virtues" array
+  var i = 0;
+
+  /**
+   * Fades in and out element with id "virtue".
+   * 
+   * @see setInterval
+   * @fires set_next_virtue_text
+   */
   function change_virtue() {
     $('#virtue').fadeOut(2000, set_next_virtue_text).fadeIn(2000);
     if (i == 3) i = 0;
   }
 
-  function set_next_virtue_text() {
-    $('#virtue').text(virtues[i++]);
-  }
+  // map "More" tab ids to card ids
+  const more_tab_to_card = {
+    "#alex_tab_more" : "#alex_card",
+    "#orestis_tab_more" : "#orestis_card"
+  };
 
-  setInterval(change_virtue, 2000);
+  // map "Info" tab ids to card ids
+  const info_tab_to_card = {
+    "#alex_tab_info" : "#alex_card",
+    "#orestis_tab_info" : "#orestis_card"
+  };
+
+  /**
+   * Expands or contracts the selected card.
+   * 
+   * When the "More" ("Info") tab is clicked, the respective card expands (contracts).
+   * 
+   * @listens onclick
+   */
+  function animate_card() {
+    id = "#" + $(this).attr("id");
+
+    // expand
+    for (const [key, value] of Object.entries(more_tab_to_card)) {
+      if (id == key) {
+        $(value).animate({width: "20em", fontSize: "1.2em"}, 1500);
+      }
+    }
+
+    // contract (return to original size)
+    for (const [key, value] of Object.entries(info_tab_to_card)) {
+      if (id == key) {
+        $(value).animate({width: "18em", fontSize: "1em"}, 1500);
+      }
+    }
+  }
 });
