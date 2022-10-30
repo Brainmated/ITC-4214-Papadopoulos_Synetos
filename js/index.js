@@ -3,6 +3,8 @@ $(document).ready(function(){
     var blankRow = "<tr><td>Nothing to display</td></tr>";
     $("#myTable tbody").append(blankRow); //will add an ampty row every time the page reloads
     $("#btn btn-primary mb-2").click(function(){
+
+        var rownum=1;
         var btitle = $("#txt_field_book_title").val().trim();
         var byear = $("#txt_field_year_of_publication").val().trim();
 
@@ -13,6 +15,7 @@ $(document).ready(function(){
             var addRow = "<tr><td>"+btitle+"</td><td>"+byear+"</td><td><button class='rembtn' onclick='remove(this)'>Delete Row</button></td></tr>";
 
             $("#myTable tbody").append(addRow);
+            $("#rownum").append(rownum+1);
             $("#btitle").val("");
             $("#byear").val("");
 
