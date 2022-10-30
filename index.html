@@ -17,9 +17,16 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <!-- For jQuery -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-        <script src="js/aux_methods.js"></script>
-        <script src="js/index.js"></script>
-        <script src="js/tablesorting.js"></script>
+        <script src="https://code.jquery.com/jquery-3.6.1.js"></script>
+        <script src="jquery-3.6.1.js"></script>
+        <script src="aux_methods.js"></script>
+        <script src="index.js"></script>
+        <script src="tablesorting.js"></script>
+        <script>
+            $(function(){
+                $("#dest").addSortWidget();
+            });
+        </script>
     </head>
 
     <body>
@@ -70,7 +77,6 @@
         <!--End of Navigation Bar----------------------------------------------------------------------------------------------------------->
 
         <br><br>
-        <!--CHANGE IMMIDIATELY-->https://getbootstrap.com/docs/4.0/content/tables/
         <div class="container">
             <form>
                 <div class="form-group">
@@ -84,22 +90,24 @@
                         <input type="number" min="1300" class="form-control" id="txt_field_year_of_publication" placeholder="Type year here">
                     </div>
                     <div class="form-group col-sm-auto">
-                        <button class="btn btn-primary mb-2">Add</button>
+                        <button id="btn btn-primary mb-2">Add</button>
                     </div>
                 </div>                
             </form>
 
             <br><br>
 
-            <table id="myTable" class="sortable">
+            <table id="myTable" class="table table-hover">
                 <thead>
                     <tr>
                         <th class="no-sort" scope="col">#</th>
-                        <th scope="col">Book Title</th>
-                        <th scope="col">Year of Publication</th>
+                        <th data-sort="title" scope="col">Book Title</th>
+                        <th data-sort="year" scope="col">Year of Publication</th>
                     </tr>
                 </thead>
-                <tbody></tbody>
+                <tbody>
+
+                </tbody>
             </table>          
 
             <br><br><br><br><br><br>
