@@ -1,174 +1,148 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
     <head>
+        <!--"Personal Booklist" would be the website name-->
+        <title>Personal Booklist | Home</title>
+        <!--For Bootstrap CSS-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+        <link rel="stylesheet" href="css/styles.css">
+        <link rel="stylesheet" href="css/index.css">
+        <!--Define the character set-->
         <meta charset="UTF-8">
-        <link rel="stylesheet" href="index.css">
-        <script src="https://code.jquery.com/jquery-3.6.1.js"></script>
-        <script src="jquery-3.6.1.js"></script>
-        <script>
-            $(document).ready(function(){
-    
-            var blankRow = "<tr><td>Nothing to display</td></tr>";
-            $("#myTable tbody").append(blankRow); //will add an ampty row every time the page reloads
-            $("#regbtn").click(function(){
-                var btitle = $("#bookTitle").val().trim();
-                var byear = $("#bookYear").val().trim();
-
-                if(btitle!="" && byear!=""){
-                    if($("#myTable tbody").children().children().length==1){
-                        $("#myTable tbody").html("");
-                    }
-                    var addRow = "<tr><td>"+btitle+"</td><td>"+byear+"</td><td><button class='rembtn' onclick='remove(this)'>Delete Row</button></td></tr>";
-
-                    $("#myTable tbody").append(addRow);
-                    $("#btitle").val("");
-                    $("#byear").val("");
-
-                    //rembtn function to remove the row and its contents
-                    
-                }
-                else{
-                    alert("Error: Please provide input for all fields")
-                }
-            });
-            /*
-            var $table = $('myTable');
-    var $tableBody = $table.find('tbody');
-    var $button = $("<button></button>", { id: 'sortNames', text: 'Sort names alphabetically'});
-    var rows, sortedRows;
-
-
-    // add the button after the table
-    $button.insertAfter( $table );
-
-
-
-    //sort the table row based on the text of the first div
-    function sortRows(a, b){
-
-        if ( $(a).find('td:first-Child').text() > $(b).find('td:first-Child').text() ) {
-            return 1;
-          }
-
-          if ( $(a).find('td:first-Child').text() < $(b).find('td:first-Child').text() ) {
-            return -1;
-          }
-
-          return 0;
-    }
-
-
-
-    // when the button is clicked...
-    $button.on('click', function(){
-
-        //get the rows from the table
-        rows = $tableBody.find('tr');
-
-        //sort the rows as "sortedrows"
-        sortedRows = rows.sort(sortRows);
-
-        //replace the old rows with the new rows
-        $tableBody.remove('tr');
-        $tableBody.append(sortedRows);
-
-    });
-            */
-
-            function sortTable(s) {
-            var table, rows, switching, i, x, y, shouldSwitch, direction, switchcount = 0;
-            table = document.getElementById("myTable");
-            switching = true;
-            // Set the sorting direction to ascending:
-            dir = "asc";
-            /* Make a loop that will continue until
-            no switching has been done: */
-            while (switching) {
-                // Start by saying: no switching is done:
-                switching = false;
-                rows = table.rows;
-                /* Loop through all table rows (except the
-                first, which contains table headers): */
-                for (i = 1; i < (rows.length - 1); i++) {
-                // Start by saying there should be no switching:
-                shouldSwitch = false;
-                /* Get the two elements you want to compare,
-                one from current row and one from the next: */
-                x = rows[i].getElementsByTagName("td")[n];
-                y = rows[i + 1].getElementsByTagName("td")[n];
-                /* Check if the two rows should switch place,
-                based on the direction, asc or desc: */
-                if (dir == "asc") {
-                    if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
-                    // If so, mark as a switch and break the loop:
-                    shouldSwitch = true;
-                    break;
-                    }
-                } else if (dir == "desc") {
-                    if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
-                    // If so, mark as a switch and break the loop:
-                    shouldSwitch = true;
-                    break;
-                    }
-                }
-                }
-                if (shouldSwitch) {
-                /* If a switch has been marked, make the switch
-                and mark that a switch has been done: */
-                rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-                switching = true;
-                // Each time a switch is done, increase this count by 1:
-                switchcount ++;
-                } 
-                else{
-                /* If no switching has been done AND the direction is "asc",
-                set the direction to "desc" and run the while loop again. */
-                    if (switchcount == 0 && dir == "asc") {
-                        dir = "desc";
-                        switching = true;
-                        }
-                    }
-                }
-            }
-            });
-            function remove(elem){
-                $(elem).parent().parent().remove();
-
-                if($("#myTable tbody").children().children().length==0){
-                    var blankRow = "<tr><td>Nothing to display</td></tr>";
-                    $("#myTable tbody").append(blankRow);
-                }
-        }
-        </script>
-            <title>Welcome to our library!</title>
+        <meta name="keywords" content="HTML, CSS, Javascript">
+        <meta name="description" content="Information about the authors">
+        <meta name="author" content="Alexandros Synetos Konstadinidis">
+        <meta name="author" content="Orestis Papadopoulos">
+        <!--The viewport (the user's visible area of the page) makes the website look good on all devices-->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- For jQuery -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script src="js/aux_methods.js"></script>
+        <script src="js/index.js"></script>
+        <script src="js/tablesorting.js"></script>
     </head>
+
     <body>
+        <!--Start of Navigation Bar-->
+        <!-- This is weird: setting to 'navbar-dark' makes font white -->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-opacity-75 bg-primary" id="sticky_header"> 
+            <div class="container">
+                <a class="navbar-brand">
+                    <img src="resources/media/deree_white.png" width="50" height="50">
+                    &emsp; ITC4214 Internet Programming &emsp; <!-- '&emsp;' represents a tab -->
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <!--Navigation links are grouped in an unordered list, and each one is a hyperlink-->
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="about.html">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="https://www.youtube.com/results?search_query=" target="_blank">YouTube</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle active" href="#acg_dropdown_list" role="button" data-bs-toggle="dropdown" aria-expanded="false">ACG</a>
+                            <ul class="dropdown-menu" id="acg_dropdown_list">
+                                <li>
+                                    <a class="dropdown-item" href="https://www.acg.edu/" target="_blank">Home</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="https://blackboard.acg.edu/" target="_blank">Blackboard</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="https://campusweb.acg.edu/ics" target="_blank">myACG</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="https://library.acg.edu/home" target="_blank">Library</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!--End of Navigation Bar----------------------------------------------------------------------------------------------------------->
+
+        <br><br>
+        <!--CHANGE IMMIDIATELY-->https://getbootstrap.com/docs/4.0/content/tables/
         <div class="container">
-            <h1>Input your Favourite Book's Information</h1>
-            <p Make sure that all information is valid></p>
-        </div>
-        <div class="row">
-            <div class="indic">
-                <input type="text" class="ourForm" placeholder="Book Title" id="bookTitle">
-            </div>
-            <div class="indic">
-                <input type="text" class="ourForm" placeholder="Year of Publication" id="bookYear">
-            </div>
-        </div>
-        <div class="row1">
-            <div class="colName">
-                <table border ="1" id="myTable" class="tableStruc table-bordered">
-                    <thead>
-                        <tr>
-                            <th id="btitle" onclick="alph" scope="col">Book Title</th>
-                            <th id="byear" onclick="asce" scope="col">Year of Publication</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <!--Table data will be input here-->
-                    </tbody>
-                </table>
-        </div>
-        <button type="button" id="regbtn" class="btn btn-success">Register Book</button>
+            <form>
+                <div class="form-group">
+                    <label id="lbl_book_title">Book Title</label>
+                    <input type="text" class="form-control" id="txt_field_book_title" placeholder="Type title here">
+                </div>
+                <br>
+                <div class="form row gx-2">
+                    <label id="lbl_year_of_publication">Year of Publication</label>
+                    <div class="form-group col-sm-auto">
+                        <input type="number" min="1300" class="form-control" id="txt_field_year_of_publication" placeholder="Type year here">
+                    </div>
+                    <div class="form-group col-sm-auto">
+                        <button class="btn btn-primary mb-2">Add</button>
+                    </div>
+                </div>                
+            </form>
+
+            <br><br>
+
+            <table id="myTable" class="sortable">
+                <thead>
+                    <tr>
+                        <th class="no-sort" scope="col">#</th>
+                        <th scope="col">Book Title</th>
+                        <th scope="col">Year of Publication</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>          
+
+            <br><br><br><br><br><br>
+            <hr>
+
+            <!--Start of Footer-->
+            <footer class="w-100 py-4 flex-shrink-0">
+                <div class="row gx-5">
+                    <div class="col-sm-auto">
+                        <img src="resources/media/acg.png" width="120" height="120">
+                    </div>
+                    <div class="col">
+                        <img src="resources/media/user_icon.png" width="114" height="80">
+                        <h4>Alexandros Synetos Konstadinidis</h4>
+                        <br>
+                            <ul>
+                                <li>a.synetos@acg.edu</li>
+                                <li>694 5086 298</li>
+                                <li>Sina 62, 10672</li>
+                            </ul>
+                    </div>
+                    <div class="col">
+                        <img src="resources/media/user_icon.png" width="114" height="80">
+                        <h4>Orestis Papadopoulos</h4>
+                        <br>
+                            <ul>
+                                <li>o.papadopoulos@acg.edu</li>
+                                <li>694 5086 298</li>
+                                <li>Sina 62, 10672</li>
+                            </ul>
+                    </div>
+                </div>
+                <br>
+                <hr>
+                <div class="row gy-4 gx-5">
+                    <div>
+                        &copy; 2022 All rights reserved.
+                    </div>
+                </div>
+            </footer>
+            <!--End of Footer-->
+        </div>    
+        <!--For Bootstrap JavaScript bundle (including Popper for positioning dropdowns, poppers, and tooltips) -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
     </body>
 </html>
