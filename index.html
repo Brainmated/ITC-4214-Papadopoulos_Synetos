@@ -17,18 +17,16 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <!-- For jQuery -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-        <script src="https://code.jquery.com/jquery-3.6.1.js"></script>
-        <script src="jquery-3.6.1.js"></script>
-        <script src="aux_methods.js"></script>
-        <script src="index.js"></script>
-        <script src="tablesorting.js"></script>
-        <script>
-            $(function(){
-                $("#dest").addSortWidget();
-            });
+        <script
+          src="https://code.jquery.com/jquery-3.6.1.js"
+          integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
+          crossorigin="anonymous">
         </script>
+        <!-- WARNING, COMPATIBILITY ISSUE WITH script.js and js/script.js-->
+        <script src="index.js"></script> 
+        <script src="tablesorting.js"></script>
+        
     </head>
-
     <body>
         <!--Start of Navigation Bar-->
         <!-- This is weird: setting to 'navbar-dark' makes font white -->
@@ -90,7 +88,7 @@
                         <input type="number" min="1300" class="form-control" id="txt_field_year_of_publication" placeholder="Type year here">
                     </div>
                     <div class="form-group col-sm-auto">
-                        <button id="btn btn-primary mb-2">Add</button>
+                        <button type="button" id="add">Add</button>
                     </div>
                 </div>                
             </form>
@@ -100,9 +98,8 @@
             <table id="myTable" class="table table-hover">
                 <thead>
                     <tr>
-                        <th class="no-sort" scope="col">#</th>
-                        <th data-sort="title" scope="col">Book Title</th>
-                        <th data-sort="year" scope="col">Year of Publication</th>
+                        <th onclick="sortTable(0)" data-sort="title" scope="col">Book Title</th>
+                        <th onclick="sortTable(1)" data-sort="year" scope="col">Year of Publication</th>
                     </tr>
                 </thead>
                 <tbody>
