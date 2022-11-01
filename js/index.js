@@ -10,6 +10,47 @@ $(document).ready(function () {
     });
 });
 
+/**
+ * @listens onclick : btn_add
+ * @listens onchange : select_sort_by
+ * @listens onchange : select_order
+ */
+function sort_table() {
+    // change the options in <select> "Order" with respect to what is selected in the <select> "Sort by"
+    var select_sort_by = document.getElementById("select_sort_by");
+    var select_order = document.getElementById("select_order");
+
+    switch (select_sort_by.options[select_sort_by.selectedIndex].value) {
+        case "Book Title":
+            select_order.options[0].innerText = "A to Z";
+            select_order.options[1].innerText = "Z to A";
+            break;
+        case "Year of Publication":
+            select_order.options[0].innerText = "Increasing";
+            select_order.options[1].innerText = "Decreasing";
+            break;
+    }
+
+    // start of sorting; try bubble sort
+    var table_books = document.getElementById("tbl_books");
+
+    // CREATE A LOOP EXIT CONDITION AND ITERATE MORE TIMES; NOT COMPLETE
+    for (var i = 1; i < table_books.rows.length - 1; i++) {
+        var current_title = table_books.rows[i].cells[1].innerText;
+        var next_title = table_books.rows[i + 1].cells[1].innerText;
+
+        // sort by title; combine conditions
+        if (select_order.options[0].innerText == "A to Z") {
+            if (current_title > next_title) {
+                table_books.rows[i].cells[1].innerText = next_title;
+                table_books.rows[i + 1].cells[1].innerText = current_title;
+            }
+        }
+
+        // sort by year
+    } 
+}
+
 function update_visibility() {
     tbl_books.style.visibility = (tbl_books.rows.length > 1) ? "visible" : "hidden";
     msg_tbl_empty.style.visibility = (tbl_books.rows.length > 1) ? "hidden" : "visible";
@@ -21,7 +62,7 @@ var titles = new Set();
 /**
  * 
  * 
- * @listens click:btn_add
+ * @listens click : btn_add
  */
 function create_row() {
 
@@ -38,7 +79,7 @@ function create_row() {
     $("#book_title_help").text("");
     $("#publication_year_help").text("");
 
-    const table_books = document.getElementById("tbl_books");
+    var table_books = document.getElementById("tbl_books");
     var year = document.getElementById("txt_field_year_of_publication");
     var title = document.getElementById("txt_field_book_title");
 
@@ -83,6 +124,7 @@ function create_row() {
     var row = table_books.insertRow();
     row.style = "vertical-align : middle;"; // I do not know how to reference the row in css
     var index_cell = row.insertCell(0);
+    index_cell.className = "class_index";
     var title_cell = row.insertCell(1);
     var year_cell = row.insertCell(2);
     var btn_delete_cell = row.insertCell(3);
@@ -101,21 +143,22 @@ function create_row() {
     update_visibility();
 }
 
-/**
- * 
- */
 function delete_row() {
+    // delete the book title corresponding to the deleted row from the set of titles
+    // $(this) refers to the delete button that was clicked
     // the first 'parent' references the cell, and the second the row
-    // delete the book title corresponding to the deleted row from the set of titles 
     titles.delete($(this).parent().parent().children().eq(1).text());
 
-    // update the indices of the elements after the deleted row
     // index of row to be deleted
     var index = Number($(this).parent().parent().children().eq(0).text());
 
+    // re-index the rows below the one that was deleted
+    var table_books = document.getElementById("tbl_books");
+    for (var i = index; i < table_books.rows.length - 1; i++) {
+        table_books.rows[i + 1].cells[0].innerText = i;
+    }
 
-
-    // remove row
+    // delete row
     $(this).parent().parent().remove();
     update_visibility();
 }

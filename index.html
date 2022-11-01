@@ -79,17 +79,33 @@
                     <small id="book_title_help" class="form-text text-muted"></small>
                 </div>
                 <br>
-                <div class="form row gx-2">
-                    <label id="lbl_year_of_publication">Year of Publication</label>
+                <div class="form row gx-3 gy-3">
                     <div class="form-group col-sm-auto">
+                        <label id="lbl_year_of_publication">Year of Publication</label>
                         <input type="number" class="form-control" id="txt_field_year_of_publication" placeholder="Type year here">
                         <small id="publication_year_help" class="form-text text-muted"></small>
                     </div>
                     <div class="form-group col-sm-auto">
-                        <button type="button" class="btn btn-primary mb-2" id="btn_add" onclick="create_row()">Add Book</button>
+                        <label>Sort by</label>
+                        <select class="form-select" aria-label="Default" id="select_sort_by" onchange="sort_table()">
+                            <option selected>Book Title</option>
+                            <option>Year of Publication</option>
+                        </select>
                     </div>
-                </div>                
+                    <div class="form-group col-sm-auto">
+                        <label>Order</label>
+                        <select class="form-select" aria-label="Default" id="select_order" onchange="sort_table()">
+                            <option selected>A to Z</option>
+                            <option>Z to A</option>
+                        </select>
+                    </div>
+                </div>
+                <br>
+                <div class="form-group col-sm-auto">
+                    <button type="button" class="btn btn-primary mb-2" id="btn_add" onclick="create_row();sort_table();">Add Book</button>
+                </div>            
             </form>
+            <!-- End of form -->
 
             <br><br>
             <p id="msg_tbl_empty">The table has no entries.</p>
@@ -109,7 +125,6 @@
 
             <br><br><br><br><br><br>
             <hr>
-            <!-- End of form -->
 
             <!--Start of Footer-->
             <footer class="w-100 py-4 flex-shrink-0">
