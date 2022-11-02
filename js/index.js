@@ -11,7 +11,7 @@ $(document).ready(function () {
 });
 
 /**
- * @listens onclick : btn_add
+ * @see end of create_row()
  * @listens onchange : select_sort_by
  * @listens onchange : select_order
  */
@@ -31,24 +31,39 @@ function sort_table() {
             break;
     }
 
-    // start of sorting; try bubble sort
+    // bubble sort
+    var sort_by_title = (select_sort_by.selectedIndex == 0) ? true : false;
+    var order_is_increasing = (select_order.selectedIndex == 0) ? true : false;
     var table_books = document.getElementById("tbl_books");
 
-    // CREATE A LOOP EXIT CONDITION AND ITERATE MORE TIMES; NOT COMPLETE
-    for (var i = 1; i < table_books.rows.length - 1; i++) {
-        var current_title = table_books.rows[i].cells[1].innerText;
+    // see at the end the condition to break the loop
+    for (var i = 1, swaps_in_this_iteration = 0; true; i++) {       
+
+        var this_title = table_books.rows[i].cells[1].innerText;
         var next_title = table_books.rows[i + 1].cells[1].innerText;
 
-        // sort by title; combine conditions
-        if (select_order.options[0].innerText == "A to Z") {
-            if (current_title > next_title) {
-                table_books.rows[i].cells[1].innerText = next_title;
-                table_books.rows[i + 1].cells[1].innerText = current_title;
-            }
-        }
+        var this_year = table_books.rows[i].cells[2].innerText;
+        var next_year = table_books.rows[i + 1].cells[2].innerText;     
 
-        // sort by year
-    } 
+        if ((sort_by_title && ((order_is_increasing && this_title > next_title) || (!order_is_increasing && this_title < next_title))) ||
+            (!sort_by_title && ((order_is_increasing && this_year > next_year) || (!order_is_increasing && this_year < next_year)))) {
+            
+            // swap titles
+            table_books.rows[i].cells[1].innerText = next_title;
+            table_books.rows[i + 1].cells[1].innerText = this_title;
+            // swap years
+            table_books.rows[i].cells[2].innerText = next_year;
+            table_books.rows[i + 1].cells[2].innerText = this_year;
+            swaps_in_this_iteration++;  
+        } 
+
+        // check if all rows have been iterated
+        if (i == table_books.rows.length - 2) {
+            if (swaps_in_this_iteration == 0) break; // no swaps were performed; table is sorted
+            swaps_in_this_iteration = 0; // reset the swap counter
+            i = 1; // reset the index
+        }
+    }
 }
 
 function update_visibility() {
@@ -140,7 +155,9 @@ function create_row() {
     btn_delete.className = "btn btn-danger mb-2";
     btn_delete.onclick = delete_row; // no parentheses!!!
     btn_delete_cell.append(btn_delete);
+    
     update_visibility();
+    sort_table();
 }
 
 function delete_row() {
