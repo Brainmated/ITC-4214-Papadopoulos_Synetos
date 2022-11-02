@@ -19,7 +19,7 @@ function sortTable(n) {
         
         if (dir == "asc") {
           if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
-            
+            $('table tr:first th:first').text('Marketting Document/URL');
             shouldSwitch = true;
             break;
           }
