@@ -1,5 +1,17 @@
+/**
+ * This file is auxiliary to the 'index.html' and 'about.htmls' files.
+ * 
+ * Allows for animations on links, text, and cards.
+ * 
+ * @course ITC4214 Internet Programming
+ * @instructor Sofoklis Efremidis, Ph.D.
+ * @assignment Midterm Coursework
+ * @due_date November 4, 2022
+ * @team_members Alexandros Synetos Konstadinidis, Orestis Papadopoulos
+ * @author Orestis Papadopoulos
+ */
 
-// wait for the document to fully load
+// called when the page has been loaded
 $(document).ready(function() {
 
   // hovering on navigation links makes them bold
@@ -31,6 +43,7 @@ $(document).ready(function() {
 
   // text values for element with id "virtue"
   const virtues = ["courage", "empathy", "curiosity"];
+  var i = 0;
 
   /**
    * Changes the text of the element with id "virtue".
@@ -41,14 +54,11 @@ $(document).ready(function() {
     $('#virtue').text(virtues[i++]);
   }
 
-  // index for "virtues" array
-  var i = 0;
-
   /**
    * Fades in and out element with id "virtue".
    * 
-   * @see setInterval
-   * @fires set_next_virtue_text
+   * @see setInterval()
+   * @fires set_next_virtue_text()
    */
   function change_virtue() {
     $('#virtue').fadeOut(2000, set_next_virtue_text).fadeIn(2000);
@@ -72,7 +82,7 @@ $(document).ready(function() {
    * 
    * When the "More" ("Info") tab is clicked, the respective card expands (contracts).
    * 
-   * @listens onclick
+   * @listens onclick : li.nav-item // the listener is at the top
    */
   function animate_card() {
     id = "#" + $(this).attr("id");

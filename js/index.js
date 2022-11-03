@@ -1,9 +1,27 @@
+/**
+ * This file is auxiliary to the 'index.html' file.
+ * 
+ * Allows to sort and reset the table, create and delete a row.
+ * Animates input validation messages.
+ * 
+ * @course ITC4214 Internet Programming
+ * @instructor Sofoklis Efremidis, Ph.D.
+ * @assignment Midterm Coursework
+ * @due_date November 4, 2022
+ * @team_members Alexandros Synetos Konstadinidis, Orestis Papadopoulos
+ * @author Orestis Papadopoulos
+ */
+
 // must be global; referenced in and out of $(document).ready
 var current_year = new Date().getFullYear();
 
+// store titles in a set since each title must be unique
+var titles = new Set();
+
+// called when the page has been loaded
 $(document).ready(function () {
 
-    const message_table_empty = document.getElementById("msg_tbl_empty");
+    // set the range for the publication year
     $("#txt_field_year_of_publication").attr({
         min : 1300, // year of first book publication ever
         max : current_year
@@ -11,7 +29,32 @@ $(document).ready(function () {
 });
 
 /**
- * @see end of create_row()
+ * Deletes all rows from the table, except from the headers.
+ * 
+ * @see update_visibility()
+ * @listens onclick : btn_reset
+ * @listens onclick : btn_confirm
+ */
+function reset_table() {
+    var table_books = document.getElementById("tbl_books");
+    var size = table_books.rows.length; // this must be declared outside the loop because row count changes
+
+    for (var i = 1; i < size; i++) {
+        // delete book titles from the set of titles
+        titles.delete(table_books.rows[1].cells[1].innerText);
+        table_books.rows[1].remove();
+    }
+    update_visibility();
+}
+
+/**
+ * Bubble sorts the table of books according to the criteria specified by the user.
+ * 
+ * The criteria are the column by which to sort (book title or year of publication)
+ * and the order, which can be increasing (A to Z) or decreasing (Z to A).
+ * 
+ * @see create_row()
+ * @listens onclick : btn_add
  * @listens onchange : select_sort_by
  * @listens onchange : select_order
  */
@@ -45,9 +88,19 @@ function sort_table() {
         var this_year = table_books.rows[i].cells[2].innerText;
         var next_year = table_books.rows[i + 1].cells[2].innerText;     
 
-        if ((sort_by_title && ((order_is_increasing && this_title > next_title) || (!order_is_increasing && this_title < next_title))) ||
-            (!sort_by_title && ((order_is_increasing && this_year > next_year) || (!order_is_increasing && this_year < next_year)))) {
-            
+        // to make the condition concise
+        var A = sort_by_title, B = order_is_increasing;
+        var C = this_title > next_title, D = this_title < next_title;
+        var E = this_year > next_year, F = this_year < next_year;
+
+        // this is the condition originally used
+        // (A && ((B && C) || (!B && D))) || (!A && ((B && E) || (!B && F)))
+
+        // simplify into multiple OR operations; URL: https://www.dcode.fr/boolean-expressions-calculator
+        var do_swap = (A && B && C) || (A && !B && D) || (!A && B && E) || (!A && !B && F);
+
+        // regardless of the sorting criteria, the operation is the same: swap titles and years
+        if (do_swap) {
             // swap titles
             table_books.rows[i].cells[1].innerText = next_title;
             table_books.rows[i + 1].cells[1].innerText = this_title;
@@ -61,23 +114,45 @@ function sort_table() {
         if (i == table_books.rows.length - 2) {
             if (swaps_in_this_iteration == 0) break; // no swaps were performed; table is sorted
             swaps_in_this_iteration = 0; // reset the swap counter
-            i = 1; // reset the index
+            i = 0; // reset the index; make it 0 not 1 (the loop will increment it to one)
         }
     }
 }
 
+/**
+ * Sets the visibility of the table and of the message that
+ * is displayed when the table is empty.
+ * 
+ * Makes the table visible only if there are entries in it.
+ * Makes the message visible when the table is empty.
+ * Enables the 'Reset' button when the table is not empty.
+ * 
+ * @see create_row()
+ * @see delete_row()
+ * @see reset_table()
+ * @listens onclick : btn_add
+ * @listens onclick : btn_delete
+ */
 function update_visibility() {
-    tbl_books.style.visibility = (tbl_books.rows.length > 1) ? "visible" : "hidden";
-    msg_tbl_empty.style.visibility = (tbl_books.rows.length > 1) ? "hidden" : "visible";
+    const message_table_empty = document.getElementById("msg_tbl_empty");
+    var btn_reset = document.getElementById("btn_reset");
+    var table_books = document.getElementById("tbl_books");
+    var size = table_books.rows.length;
+
+    table_books.style.visibility = (size > 1) ? "visible" : "hidden";
+    message_table_empty.style.visibility = (size > 1) ? "hidden" : "visible";
+    btn_reset.disabled = (size > 1) ? false : true;
 }
 
-// store titles in a set since each title must be unique
-var titles = new Set();
-
 /**
+ * Creates a new row at the end of the table.
  * 
+ * Performs input validation, adds the data passed by
+ * the user to the row, and then the table gets sorted.
  * 
- * @listens click : btn_add
+ * @see sort_table()
+ * @see update_visibility()
+ * @listens onclick : btn_add
  */
 function create_row() {
 
@@ -129,7 +204,7 @@ function create_row() {
 
     // validate publication year
     if (year.value < 1300 || year.value > current_year) {
-        $("#publication_year_help").text("Year of publication range: 1300 to " + current_year + " inclusive.");
+        $("#publication_year_help").text("Range: 1300 to " + current_year + " inclusive.");
         return;
     }
 
@@ -139,7 +214,6 @@ function create_row() {
     var row = table_books.insertRow();
     row.style = "vertical-align : middle;"; // I do not know how to reference the row in css
     var index_cell = row.insertCell(0);
-    index_cell.className = "class_index";
     var title_cell = row.insertCell(1);
     var year_cell = row.insertCell(2);
     var btn_delete_cell = row.insertCell(3);
@@ -160,10 +234,18 @@ function create_row() {
     sort_table();
 }
 
+/**
+ * Deletes the row whose 'Delete' button was clicked.
+ * 
+ * All rows under the one that will be deleted are re-indexed.
+ * That is, their index is decremented by one.
+ * 
+ * @see update_visibility()
+ * @listens onclick : 'Delete' button
+ */
 function delete_row() {
     // delete the book title corresponding to the deleted row from the set of titles
-    // $(this) refers to the delete button that was clicked
-    // the first 'parent' references the cell, and the second the row
+    // $(this) refers to the button, the first 'parent' refers to the cell, and the second to the row
     titles.delete($(this).parent().parent().children().eq(1).text());
 
     // index of row to be deleted
