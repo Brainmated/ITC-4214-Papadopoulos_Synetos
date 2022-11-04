@@ -1,0 +1,21 @@
+
+#about_carousel .carousel-item img {
+    object-fit: cover;
+    object-position: center;
+    height: 40vmax; /* height relative to viewport max */
+    width: 50vmax;
+    overflow: hidden;
+}
+
+#sticky_header {
+  position: sticky;
+  top: 0;
+  z-index: 100; /* so that the header appears in front of the rest of the content */
+}
+
+/* removes the bullets from the footer info */
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
