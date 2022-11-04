@@ -5,7 +5,6 @@
         <!-- For Bootstrap CSS -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
         <link rel="stylesheet" href="css/styles.css">
-        <link rel="stylesheet" href="css/index.css">
         <!-- Define the character set -->
         <meta charset="UTF-8">
         <meta name="keywords" content="HTML, CSS, Javascript">
@@ -13,6 +12,9 @@
         <meta name="author" content="Orestis Papadopoulos">
         <!-- The viewport (the user's visible area of the page) makes the website look good on all devices -->
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- For popovers and tooltips -->
+        <script src="js/popper.js"></script>
+        <script src="js/popper.min.js"></script>
         <!-- For jQuery -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         <script src="js/index.js"></script>
@@ -73,14 +75,14 @@
             <form>
                 <div class="form-group">
                     <label id="lbl_book_title">Book Title</label>
-                    <input type="text" class="form-control" id="txt_field_book_title" placeholder="Type title here">
+                    <input type="text" class="form-control" id="txt_field_book_title" placeholder="Type title here" oninput="enable_disable_btn_add()">
                     <small id="book_title_help" class="form-text text-muted"></small>
                 </div>
                 <br>
                 <div class="form row gx-3 gy-3">
                     <div class="form-group col-sm-auto">
                         <label id="lbl_year_of_publication">Year of Publication</label>
-                        <input type="number" class="form-control" id="txt_field_year_of_publication" placeholder="Type year here">
+                        <input type="number" class="form-control" id="txt_field_year_of_publication" placeholder="Type year here" oninput="enable_disable_btn_add()">
                         <small id="publication_year_help" class="form-text text-muted"></small>
                     </div>
                     <div class="form-group col-sm-auto">
@@ -101,10 +103,14 @@
                 <br>
                 <div class="form row gx-3 gy-3">
                     <div class="form-group col-sm-auto">
-                        <button type="button" class="btn btn-primary mb-2" id="btn_add" onclick="create_row()">Add Book</button>
+                        <span id="btn_add_popover" class="d-inline-block" data-bs-toggle="popover" data-bs-trigger="hover" title="Cannot add book yet" data-bs-content="Type both a title and a year to add a book.">
+                            <button type="button" class="btn btn-primary mb-2" id="btn_add" onclick="create_row()" disabled>Add Book</button>
+                        </span>
                     </div>
-                    <div class="form-group col-sm auto">
-                        <button type="button" class="btn btn-danger mb-2" id="btn_reset" data-bs-toggle="modal" data-bs-target="#modal_confirm" disabled>Reset</button>
+                    <div class="form-group col-sm auto">                        
+                        <span id="btn_reset_popover" class="d-inline-block" data-bs-toggle="popover" data-bs-trigger="hover" title="Cannot reset yet" data-bs-content="The table is empty. To reset you must have added some books.">
+                            <button type="button" class="btn btn-danger mb-2" id="btn_reset" data-bs-toggle="modal" data-bs-target="#modal_confirm" disabled>Reset</button>
+                        </span>
                     </div>
                     <div class="modal fade" id="modal_confirm" tabindex="-1" role="dialog" aria-labelledby="modal_confirm_label" aria-hidden="true">
                         <div class="modal-dialog" role="document">
@@ -128,33 +134,51 @@
             <!-- End of form -->
 
             <br><br>
+            <!-- If the table is empty, display the following -->
             <p id="msg_tbl_empty">The table has no books.</p>
 
-            <!-- The table is hidden by default and it only has headers; rows are added/deleted dynamically -->
-            <table class="table" id="tbl_books" style="visibility : hidden;">
-                <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Book Title</th>
-                        <th scope="col">Year of Publication</th>
-                        <th scope="col"></th>
-                    </tr>
-                </thead>
-                <tbody></tbody>
-            </table>          
+            <!-- Start of table -->
+            <!-- The accordion is hidden by default; when rows are added to the table, then it becomes visible -->
+            <div id="accordion_for_table" style="visibility : hidden;">
+                <div class="card">
+                    <div class="card-header" id="accordion_header">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link" data-bs-toggle="collapse" data-bs-target="#collapse_table" aria-expanded="true" aria-controls="collapse_table">
+                                Table of Books
+                            </button>
+                        </h5>
+                    </div>
+                    <div id="collapse_table" class="collapse show" aria-labelledby="accordion_header" data-parent="#accordion_for_table">
+                        <div class="card-body">
+                            <table class="table" id="tbl_books">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Book Title</th>
+                                        <th scope="col">Year of Publication</th>
+                                        <th scope="col"></th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>   
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End of table -->
 
             <br><br><br><br><br><br>
             <hr>
 
             <!-- Start of Footer -->
             <footer class="w-100 py-4 flex-shrink-0">
-                <div class="row gx-5">
+                <div class="row gx-5 gy-5">
                     <div class="col-sm-auto">
-                        <img src="resources/media/acg.png" width="120" height="120">
+                        <img src="resources/media/acg.png" width="110" height="110">
                     </div>
                     <div class="col">
                         <img src="resources/media/user_icon.png" width="114" height="80">
-                        <h4>Alexandros Synetos Konstadinidis</h4>
+                        <h4><br>Alexandros Synetos Konstadinidis</h4>
                         <br>
                             <ul>
                                 <li>a.synetos@acg.edu</li>
@@ -163,8 +187,8 @@
                             </ul>
                     </div>
                     <div class="col">
-                        <img src="resources/media/user_icon.png" width="114" height="80">
-                        <h4>Orestis Papadopoulos</h4>
+                        <img src="resources/media/orestis.png" style="width: 17%; height: auto;">
+                        <h4><br>Orestis Papadopoulos</h4>
                         <br>
                             <ul>
                                 <li>o.papadopoulos@acg.edu</li>

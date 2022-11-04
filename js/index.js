@@ -26,7 +26,30 @@ $(document).ready(function () {
         min : 1300, // year of first book publication ever
         max : current_year
     });
+
+    // initialize all popovers on the page
+    $(function () {
+        $('[data-bs-toggle="popover"]').popover()
+    })
+
+    // initialize all tooltips on the page; "popovers require the tooltip plugin as a dependency"
+    $(function () {
+        $('[data-bs-toggle="tooltip"]').tooltip()
+    })
 });
+
+/**
+ * Disables the "Add" button if either of the textfields is empty.
+ * 
+ * @listens oninput : txt_field_book_title, txt_field_year_of_publication
+ */
+function enable_disable_btn_add() {
+    var btn_add = document.getElementById("btn_add");
+    var year = document.getElementById("txt_field_year_of_publication");
+    var title = document.getElementById("txt_field_book_title");
+    btn_add.disabled = (title.value == "" || year.value == "") ? true : false;
+    $("#btn_add_popover").popover((title.value == "" || year.value == "") ? "enable" : "disable");
+}
 
 /**
  * Deletes all rows from the table, except from the headers.
@@ -138,10 +161,12 @@ function update_visibility() {
     var btn_reset = document.getElementById("btn_reset");
     var table_books = document.getElementById("tbl_books");
     var size = table_books.rows.length;
+    var accordion_for_table = document.getElementById("accordion_for_table");
 
-    table_books.style.visibility = (size > 1) ? "visible" : "hidden";
+    accordion_for_table.style.visibility = (size > 1) ? "visible" : "hidden";
     message_table_empty.style.visibility = (size > 1) ? "hidden" : "visible";
     btn_reset.disabled = (size > 1) ? false : true;
+    $("#btn_reset_popover").popover((size > 1) ? "disable" : "enable");
 }
 
 /**

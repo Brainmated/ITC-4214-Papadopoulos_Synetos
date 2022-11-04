@@ -13,6 +13,7 @@
   z-index: 100; /* so that the header appears in front of the rest of the content */
 }
 
+/* removes the bullets from the footer info */
 ul {
   list-style-type: none;
   margin: 0;
